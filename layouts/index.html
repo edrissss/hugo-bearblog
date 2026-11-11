@@ -1,3 +1,22 @@
+
 {{ define "main" }}
-{{ .Content }}
+{{ $pages := where site.RegularPages "Type" "blog" }}
+{{ range $pages.ByDate.Reverse }}
+<article>
+  <h2>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+  </h2>
+
+  <p>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">
+      {{ .Date.Format (default "2006-01-02" site.Params.dateFormat) }}
+    </time>
+  </p>
+
+  <content>
+    {{ .Content }}
+  </content>
+</article>
+<hr>
+{{ end }}
 {{ end }}
