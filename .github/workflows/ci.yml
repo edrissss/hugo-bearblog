@@ -25,7 +25,7 @@ jobs:
     - name: Build local ./exampleSite
       run: hugo --minify --gc --destination ../public --source ./exampleSite --themesDir ../.. --baseURL https://edrissss.github.io/hugo-bearblog/
 
-    -name: Upload Artifact
+    - name: Upload Artifact
       uses: actions/upload-artifact@v7
       with:
         name: build
