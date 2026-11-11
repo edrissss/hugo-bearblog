@@ -1,0 +1,61 @@
+
+media:
+  input: exampleSite/static/images
+  output: /images
+
+content:
+  - name: posts
+    label: Blog Posts
+    type: collection
+    path: exampleSite/content/blog
+    format: toml-frontmatter
+    filename: "{year}-{month}-{day}-{primary}.md"
+    view:
+      primary: title
+      fields:
+        - title
+        - date
+        - description
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Title
+        type: string
+        required: true
+
+      - name: date
+        label: Date
+        type: date
+
+      - name: description
+        label: Description
+        type: text
+
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+
+      - name: body
+        label: Content
+        type: rich-text
+
+  - name: pages
+    label: Pages
+    type: collection
+    path: exampleSite/content
+    exclude:
+      - blog/**
+      - _index.md
+    fields:
+      - name: title
+        label: Title
+        type: string
+      - name: body
+        label: Content
+        type: rich-text
+
+settings:
+  content:
+    merge: true
